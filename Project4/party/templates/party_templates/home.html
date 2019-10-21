@@ -11,11 +11,20 @@
 
         <div>Party theme: <input type="text" name="theme"></div>
 
+        <p>Get a random drink recommendation for your party!</p>
+        <form class="random-drink" method="GET">
+            <button name="random-drink" type="submit">Random drink</button> 
+        </form>
+
+        {% if random_drink %}
+            <p>{{ random_drink }}</p>
+        {% endif %}
+
         <p>Get a 5 day weather forecast of your area.</p>
         <form class="weather-search" method="GET">
             <div>City name: <input type="text" name="city"></div>
             <div>Country code: <input type="text" name="country_code"><br></div>
-            <button onclick="" type="submit">Search</button>
+            <button type="submit">Search</button>
         </form>
 
         {% for day in day_1 %}
