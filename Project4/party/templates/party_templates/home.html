@@ -18,20 +18,39 @@
             <button onclick="" type="submit">Search</button>
         </form>
 
-        {% if weather_results %}
-            <p>{{ weather_results }}</p>
-        {% endif %}
-
-        {% for projection in weather %}
-        <div>
-            {{ projection.date }}
-            {{ projection.temp }}
-            {{ projection.weather }}
-        </div>
+        {% for day in day_1 %}
+            <p>{{ day }}</p>
         {% empty %}
-        <p>There are no weather projections available.</p>
+            <p>There are no weather forecasts for this day</p>
         {% endfor %}
 
+
+        {% for day in day_2 %}
+            <p>{{ day }}</p>
+        {% empty %}
+            <p>There are no weather forecasts for this day</p>
+        {% endfor %}
+        
+
+        {% for day in day_3 %}
+            <p>{{ day }}</p>
+        {% empty %}
+            <p>There are no weather forecasts for this day</p>
+        {% endfor %}
+
+
+        {% for day in day_4 %}
+            <p>{{ day }}</p>
+        {% empty %}
+            <p>There are no weather forecasts for this day</p>
+        {% endfor %}
+
+
+        {% for day in day_5 %}
+            <p>{{ day }}</p>
+        {% empty %}
+            <p>There are no weather forecasts for this day</p>
+        {% endfor %}
     </body>
 
 </html>

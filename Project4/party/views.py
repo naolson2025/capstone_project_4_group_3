@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Weather
-from .weatherAPI import main
+from .weatherAPI import sort_data
 import requests
 
 # Create your views here.
@@ -11,6 +11,13 @@ def weather_list(request):
     #return render(request, 'party_templates/home.html', {'weather': weather})
 
     weather_results = {}
+
+    day_1 = {}
+    day_2 = []
+    day_3 = []
+    day_4 = []
+    day_5 = []
+
     if 'city' and 'country_code' in request.GET:
         city = request.GET['city']
         country_code = request.GET['country_code']
@@ -21,4 +28,9 @@ def weather_list(request):
         # request data from the API server by combining the URL and query
         data = requests.get(url, params=query).json()
         weather_results = data['list']
-    return render(request, 'party_templates/home.html', {'weather_results': weather_results})
+
+        # call the sort data method from weatherAPI.py in order to format the data
+        day_1, day_2, day_3, day_4, day_5 = sort_data(weather_results)
+ 
+    #return render(request, 'party_templates/home.html', {'weather_results': weather_results}, {'day_1': day_1})
+    return render(request, 'party_templates/home.html', {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5})
