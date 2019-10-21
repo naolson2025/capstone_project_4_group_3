@@ -5,22 +5,26 @@ from datetime import datetime
 def main():
     print('Get the 5 day weather forecast for any city.')
     # An environment key must be set for the program to work
-    key = os.environ.get('WEATHER_KEY')
+    #key = os.environ.get('WEATHER_KEY')
     # Loop if a user enters invalid city or country
     while True:
         try:
+            print("Type 'break' to end.")
             city = input('Enter a city name: ')
-            country_code = input('Enter the country code: ')
-            # Create a query based on the inputs given from the user
-            query = {'q': f'{city},{country_code}', 'units': 'imperial', 'appid': key}
+            if city.lower() != 'break':
+                country_code = input('Enter the country code: ')
+                # Create a query based on the inputs given from the user
+                query = {'q': f'{city},{country_code}', 'units': 'imperial', 'appid': f08dea024433103844dc3ee09f370434}
 
-            url = f'https://api.openweathermap.org/data/2.5/forecast'
-            # request data from the API server by combining the URL and query
-            data = requests.get(url, params=query).json()
-            forecast = data['list']
-            # Send the API info trimmed to just the 'list' to the sort_data function
-            sort_data(forecast)
-            break
+                url = f'https://api.openweathermap.org/data/2.5/forecast'
+                # request data from the API server by combining the URL and query
+                data = requests.get(url, params=query).json()
+                forecast = data['list']
+                # Send the API info trimmed to just the 'list' to the sort_data function
+                sort_data(forecast)
+                break
+            else:
+                break
         except:
             print('The city or country code you entered was invalid.')
 
