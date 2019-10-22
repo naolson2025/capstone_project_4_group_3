@@ -7,9 +7,17 @@
 
     <body>
         <h1>Party Planner</h1>
-        <p>Pick a theme for your party and we will suggest the food and drinks. We'll even give you a heads up on the weather!</p>
+        <p>Search for food recipes and get random drink suggestions. We'll even give you a heads up on the weather!</p>
 
-        <div>Party theme: <input type="text" name="theme"></div>
+        <p>Search a type of food for recipe suggestions</p>
+        <form class="food-search" method="GET">
+            <div>food type: <input type="text" name="food"></div>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if recipe %}
+            <p>{{ recipe }}</p>
+        {% endif %}
 
         <p>Get a random drink recommendation for your party!</p>
         <form class="random-drink" method="GET">
