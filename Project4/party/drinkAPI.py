@@ -11,5 +11,17 @@ def call_drink_api():
     }
 
     random_drink = requests.request("GET", url, headers=headers).json()
-   
-    return random_drink
+
+    return random_drink['list']
+
+def filter_drink_api(random_drink):
+
+    for drink in random_drink:
+        drink_name = drink['strDrink']
+        drink_catagory = drink['strCatagory']
+
+        print(f'Drink name is: {drink_name} Drink catagory is: {drink_catagory} ')
+
+        
+
+
