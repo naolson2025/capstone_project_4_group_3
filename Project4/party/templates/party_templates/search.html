@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <a class="nav-link" href="{% url 'display_party_data' %}">Search</a>
+        <a class="nav-link" href="{% url 'get_party_data' %}">results</a>
         <h1>Party Planner</h1>
         <p>Search for food recipes and get random drink suggestions. We'll even give you a heads up on the weather!</p>
 
@@ -16,18 +16,10 @@
             <button type="submit">Search</button>
         </form>
 
-        {% if recipe %}
-            <p>{{ recipe }}</p>
-        {% endif %}
-
         <p>Get a random drink recommendation for your party!</p>
         <form class="random-drink" method="GET">
             <button name="random-drink" type="submit">Random drink</button> 
         </form>
-
-        {% if random_drink %}
-            <p>{{ random_drink }}</p>
-        {% endif %}
 
         <p>Get a 5 day weather forecast of your area.</p>
         <form class="weather-search" method="GET">
@@ -36,39 +28,6 @@
             <button type="submit">Search</button>
         </form>
 
-        {% for day in day_1 %}
-            <p>{{ day }}</p>
-        {% empty %}
-            <p>There are no weather forecasts for this day</p>
-        {% endfor %}
-
-
-        {% for day in day_2 %}
-            <p>{{ day }}</p>
-        {% empty %}
-            <p>There are no weather forecasts for this day</p>
-        {% endfor %}
-        
-
-        {% for day in day_3 %}
-            <p>{{ day }}</p>
-        {% empty %}
-            <p>There are no weather forecasts for this day</p>
-        {% endfor %}
-
-
-        {% for day in day_4 %}
-            <p>{{ day }}</p>
-        {% empty %}
-            <p>There are no weather forecasts for this day</p>
-        {% endfor %}
-
-
-        {% for day in day_5 %}
-            <p>{{ day }}</p>
-        {% empty %}
-            <p>There are no weather forecasts for this day</p>
-        {% endfor %}
     </body>
 
 </html>

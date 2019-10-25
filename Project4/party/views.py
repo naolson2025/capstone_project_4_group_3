@@ -37,3 +37,7 @@ def get_party_data(request):
 
 
     return render(request, 'party_templates/home.html', {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5, 'random_drink': random_drink, 'recipe': recipe})
+
+
+def display_party_data(request):
+    return render(request, 'party_templates/search.html')
