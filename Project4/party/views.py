@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Weather, RecipeSearch
 from .weatherAPI import call_weather_api, sort_data
 from .drinkAPI import call_drink_api
-from .foodAPI import call_food_api
+from .foodAPI import call_food_api, clean_food_data
 import requests
 from .forms import NewSearch
 
@@ -25,15 +25,15 @@ def get_party_data(request):
 def display_party_data(request):
     # Set blank variables for default render
 
-    print(request.GET)
-
     day_1 = []
     day_2 = []
     day_3 = []
     day_4 = []
     day_5 = []
     random_drink = []
-    recipe = []
+    recipe_url = []
+    ingredients = []
+    food_name = []
 
     # Call the weather api from weatherAPI.py
     weather_data = call_weather_api()
@@ -48,8 +48,8 @@ def display_party_data(request):
     food = RecipeSearch.objects.latest('id')
     # Call the food api and provide the user's food type
     # returns a recipe for that food type
-    recipe = call_food_api(food)
+    recipe_url, ingredients, food_name = call_food_api(food)
 
 
-    return render(request, 'party_templates/results.html', {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5, 'random_drink': random_drink, 'recipe': recipe})
+    return render(request, 'party_templates/results.html', {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5, 'random_drink': random_drink, 'recipe_url': recipe_url, 'ingredients': ingredients, 'food_name': food_name})
 
