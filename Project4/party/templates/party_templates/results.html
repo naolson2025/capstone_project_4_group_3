@@ -6,35 +6,20 @@
     </head>
 
     <body>
-        <a class="nav-link" href="{% url 'display_party_data' %}">Search</a>
+        <a class="nav-link" href="{% url 'get_party_data' %}">Search</a>
         <h1>Party Planner</h1>
         <p>Search for food recipes and get random drink suggestions. We'll even give you a heads up on the weather!</p>
 
-        <p>Search a type of food for recipe suggestions</p>
-        <form class="food-search" method="GET">
-            <div>food type: <input type="text" name="food"></div>
-            <button type="submit">Search</button>
-        </form>
 
         {% if recipe %}
             <p>{{ recipe }}</p>
         {% endif %}
 
-        <p>Get a random drink recommendation for your party!</p>
-        <form class="random-drink" method="GET">
-            <button name="random-drink" type="submit">Random drink</button> 
-        </form>
 
         {% if random_drink %}
             <p>{{ random_drink }}</p>
         {% endif %}
 
-        <p>Get a 5 day weather forecast of your area.</p>
-        <form class="weather-search" method="GET">
-            <div>City name: <input type="text" name="city"></div>
-            <div>Country code: <input type="text" name="country_code"><br></div>
-            <button type="submit">Search</button>
-        </form>
 
         {% for day in day_1 %}
             <p>{{ day }}</p>

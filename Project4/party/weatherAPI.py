@@ -3,11 +3,11 @@ import os
 from datetime import datetime
 
 
-def call_weather_api(city, country_code):
+def call_weather_api():
     # An environment key must be set for the program to work
     #key = os.environ.get('WEATHER_KEY')
     # Create a query based on the inputs given from the user
-    query = {'q': f'{city},{country_code}', 'units': 'imperial', 'appid': 'f08dea024433103844dc3ee09f370434'}
+    query = {'q': f'minneapolis,us', 'units': 'imperial', 'appid': 'f08dea024433103844dc3ee09f370434'}
 
     url = f'https://api.openweathermap.org/data/2.5/forecast'
     # request data from the API server by combining the URL and query

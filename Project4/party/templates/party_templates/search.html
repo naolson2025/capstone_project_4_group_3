@@ -1,34 +1,23 @@
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Party Planner</title>
+        <title>Minneapolis Picnic Planner</title>
         <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
     </head>
 
     <body>
-        <a class="nav-link" href="{% url 'get_party_data' %}">results</a>
-        <h1>Party Planner</h1>
-        <p>Search for food recipes and get random drink suggestions. We'll even give you a heads up on the weather!</p>
+        <a class="nav-link" href="{% url 'display_party_data' %}">Search</a>
+        <h1>Minneapolis Picnic Planner</h1>
+        <h5>Search for a type of food you like and we'll provide a food recipe, random drink recipe, and the weather! Everything you need to plan your picnic.</h5>
 
-        <p>Search a type of food for recipe suggestions</p>
-        <form class="food-search" method="GET">
-            <div>food type: <input type="text" name="food"></div>
-            <button type="submit">Search</button>
-        </form>
-
-        <p>Get a random drink recommendation for your party!</p>
-        <form class="random-drink" method="GET">
-            <button name="random-drink" type="submit">Random drink</button> 
-        </form>
-
-        <p>Get a 5 day weather forecast of your area.</p>
-        <form class="weather-search" method="GET">
-            <div>City name: <input type="text" name="city"></div>
-            <div>Country code: <input type="text" name="country_code"><br></div>
-            <button type="submit">Search</button>
+        <p>Search a type of food for a recipe suggestion: </p>
+        <form class="food-search" method="POST" action="{% url 'get_party_data' %}">
+            {% csrf_token %}
+            {{ new_user_search_form }}
+            <button id="new-user-search" type="submit">Search</button>
         </form>
 
     </body>
 
 </html>
-

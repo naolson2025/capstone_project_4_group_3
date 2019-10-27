@@ -1,14 +1,32 @@
-from django.shortcuts import render
-from .models import Weather
+from django.shortcuts import render, redirect
+from .models import Weather, RecipeSearch
 from .weatherAPI import call_weather_api, sort_data
 from .drinkAPI import call_drink_api
 from .foodAPI import call_food_api
 import requests
+from .forms import NewSearch
 
 # Create your views here.
 
+# Render the search.html template when the url is ''
 def get_party_data(request):
+    if request.method == 'POST':
+        form = NewSearch(request.POST)
+        user_search = form.save()
+        if form.is_valid():
+            user_search.save()
+            return redirect('display_party_data')
+
+    new_user_search_form = NewSearch()
+
+    return render(request, 'party_templates/search.html', {'new_user_search_form': new_user_search_form})
+
+
+def display_party_data(request):
     # Set blank variables for default render
+
+    print(request.GET)
+
     day_1 = []
     day_2 = []
     day_3 = []
@@ -17,27 +35,21 @@ def get_party_data(request):
     random_drink = []
     recipe = []
 
+    # Call the weather api from weatherAPI.py
+    weather_data = call_weather_api()
+    # call the sort data method from weatherAPI.py in order to format the data
+    day_1, day_2, day_3, day_4, day_5 = sort_data(weather_data)
 
-    if 'city' and 'country_code' in request.GET:
-        city = request.GET['city']
-        country_code = request.GET['country_code']
+    # Call the random drink api to provide a random drink recipe
+    random_drink = call_drink_api()
 
-        weather_data = call_weather_api(city, country_code)
-        # call the sort data method from weatherAPI.py in order to format the data
-        day_1, day_2, day_3, day_4, day_5 = sort_data(weather_data)
-
-
-    if 'random-drink' in request.GET:
-        random_drink = call_drink_api()
-
-
-    if 'food' in request.GET:
-        food = request.GET['food']
-        recipe = call_food_api(food)
+    # Get the most recebt food type input from the user
+    # Found .latest on stack overflow
+    food = RecipeSearch.objects.latest('id')
+    # Call the food api and provide the user's food type
+    # returns a recipe for that food type
+    recipe = call_food_api(food)
 
 
-    return render(request, 'party_templates/home.html', {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5, 'random_drink': random_drink, 'recipe': recipe})
+    return render(request, 'party_templates/results.html', {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5, 'random_drink': random_drink, 'recipe': recipe})
 
-
-def display_party_data(request):
-    return render(request, 'party_templates/search.html')
