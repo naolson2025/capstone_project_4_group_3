@@ -17,12 +17,14 @@ def call_drink_api():
 def filter_drink_api(random_drink):
 
     for drink in random_drink:
-        drink_name = drink['strDrink']
-        drink_catagory = drink['strCatagory']
+        drink_name = drink['drinks'] [0] ['strDrink']
+        drink_catagory = drink['drinks'] [0] ['strCatagory']
 
         print(f'Drink name is: {drink_name} Drink catagory is: {drink_catagory} ')
 
-        #comment
+        return drink
+
+        
 
         
 
