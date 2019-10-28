@@ -46,32 +46,55 @@ def sort_data(forecast):
             day_5.append(interval)
         else:
             print('Error')
+            print(interval)
 
-    day_1_formatted = []
-    day_2_formatted = []
-    day_3_formatted = []
-    day_4_formatted = []
-    day_5_formatted = []
 
-    # Display the 5 day lists with the 3 hour intervals
+    average_temps = []
+    # Found round() on stack overflow
+    number_of_days = 0
+    day_1_total_temp = 0
     for day in day_1:
-        formatted_forecast_1 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
-        day_1_formatted.append(formatted_forecast_1)
+        day_1_total_temp += day['main']['temp']
+        number_of_days += 1
 
+    day_1_average_temp = day_1_total_temp / number_of_days
+    average_temps.append(round(day_1_average_temp, 2))
+
+
+    number_of_days = 0
+    day_2_total_temp = 0
     for day in day_2:
-        formatted_forecast_2 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
-        day_2_formatted.append(formatted_forecast_2)
+        day_2_total_temp += day['main']['temp']
+        number_of_days += 1
+    day_2_average_temp = day_2_total_temp / number_of_days
+    average_temps.append(round(day_2_average_temp, 2))
 
+
+    number_of_days = 0
+    day_3_total_temp = 0
     for day in day_3:
-        formatted_forecast_3 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
-        day_3_formatted.append(formatted_forecast_3)
+        day_3_total_temp += day['main']['temp']
+        number_of_days += 1
+    day_3_average_temp = day_3_total_temp / number_of_days
+    average_temps.append(round(day_3_average_temp, 2))
 
+
+    number_of_days = 0
+    day_4_total_temp = 0
     for day in day_4:
-        formatted_forecast_4 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
-        day_4_formatted.append(formatted_forecast_4)
+        day_4_total_temp += day['main']['temp']
+        number_of_days += 1
+    day_4_average_temp = day_4_total_temp / number_of_days
+    average_temps.append(round(day_4_average_temp, 2))
 
+
+    number_of_days = 0
+    day_5_total_temp = 0
     for day in day_5:
-        formatted_forecast_5 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
-        day_5_formatted.append(formatted_forecast_5)
+        day_5_total_temp += day['main']['temp']
+        number_of_days += 1
+    day_5_average_temp = day_5_total_temp / number_of_days
+    average_temps.append(round(day_5_average_temp, 2))
 
-    return day_1_formatted, day_2_formatted, day_3_formatted, day_4_formatted, day_5_formatted
+    
+    return five_forecast_dates, average_temps

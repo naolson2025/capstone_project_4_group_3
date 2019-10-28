@@ -1,0 +1,24 @@
+#picnic-planner {
+    text-align: center;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+}
+
+#new-search-button {
+    margin-left: 25px;
+}
+
+#day-header {
+    font-weight: bold;
+}
+
+#temp-header {
+    font-weight: bold;
+}
+
+/* found float on stack overflow */
+#save-button {
+    float: right;
+}

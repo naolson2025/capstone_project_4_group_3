@@ -24,24 +24,19 @@ def get_party_data(request):
 
 def display_party_data(request):
     # Set blank variables for default render
-    day_1 = []
-    day_2 = []
-    day_3 = []
-    day_4 = []
-    day_5 = []
 
-    drink_name = []
-    drink_ingredients = []
-    measurements = []
+    #drink_name = []
+    #drink_ingredients = []
+    #measurements = []
 
-    recipe_url = []
-    food_ingredients = []
-    food_name = []
+    #recipe_url = []
+    #food_ingredients = []
+    #food_name = []
 
     # Call the weather api from weatherAPI.py
     weather_data = call_weather_api()
     # call the sort data method from weatherAPI.py in order to format the data
-    day_1, day_2, day_3, day_4, day_5 = sort_data(weather_data)
+    five_forecast_dates, average_temps = sort_data(weather_data)
 
     # Call the random drink api to provide a random drink recipe
     drink_name, drink_ingredients, measurements = call_drink_api()
@@ -56,7 +51,7 @@ def display_party_data(request):
 
 
     return render(request, 'party_templates/results.html', \
-        {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5,\
+        {'five_forecast_dates': five_forecast_dates, 'average_temps': average_temps, \
         'drink_name': drink_name, 'drink_ingredients': drink_ingredients, 'measurements': measurements,\
         'recipe_url': recipe_url, 'food_ingredients': food_ingredients, 'food_name': food_name})
 
