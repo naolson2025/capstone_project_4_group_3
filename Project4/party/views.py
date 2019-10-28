@@ -23,16 +23,6 @@ def get_party_data(request):
 
 
 def display_party_data(request):
-    # Set blank variables for default render
-
-    #drink_name = []
-    #drink_ingredients = []
-    #measurements = []
-
-    #recipe_url = []
-    #food_ingredients = []
-    #food_name = []
-
     # Call the weather api from weatherAPI.py
     weather_data = call_weather_api()
     # call the sort data method from weatherAPI.py in order to format the data
