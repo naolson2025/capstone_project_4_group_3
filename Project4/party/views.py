@@ -24,15 +24,18 @@ def get_party_data(request):
 
 def display_party_data(request):
     # Set blank variables for default render
-
     day_1 = []
     day_2 = []
     day_3 = []
     day_4 = []
     day_5 = []
-    random_drink = []
+
+    drink_name = []
+    drink_ingredients = []
+    measurements = []
+
     recipe_url = []
-    ingredients = []
+    food_ingredients = []
     food_name = []
 
     # Call the weather api from weatherAPI.py
@@ -41,15 +44,19 @@ def display_party_data(request):
     day_1, day_2, day_3, day_4, day_5 = sort_data(weather_data)
 
     # Call the random drink api to provide a random drink recipe
-    random_drink = call_drink_api()
+    drink_name, drink_ingredients, measurements = call_drink_api()
+    #drink_name = call_drink_api()
 
-    # Get the most recebt food type input from the user
+    # Get the most recent food type input from the user
     # Found .latest on stack overflow
     food = RecipeSearch.objects.latest('id')
     # Call the food api and provide the user's food type
     # returns a recipe for that food type
-    recipe_url, ingredients, food_name = call_food_api(food)
+    recipe_url, food_ingredients, food_name = call_food_api(food)
 
 
-    return render(request, 'party_templates/results.html', {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5, 'random_drink': random_drink, 'recipe_url': recipe_url, 'ingredients': ingredients, 'food_name': food_name})
+    return render(request, 'party_templates/results.html', \
+        {'day_1': day_1, 'day_2': day_2, 'day_3': day_3, 'day_4': day_4, 'day_5': day_5,\
+        'drink_name': drink_name, 'drink_ingredients': drink_ingredients, 'measurements': measurements,\
+        'recipe_url': recipe_url, 'food_ingredients': food_ingredients, 'food_name': food_name})
 

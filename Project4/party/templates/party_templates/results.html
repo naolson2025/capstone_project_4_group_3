@@ -14,16 +14,25 @@
         {% endif %}
 
         {% if recipe_url %}
+            <a href="{{ recipe_url }}">{{ recipe_url }}</a>
             <p>{{ recipe_url }}</p>
         {% endif %}
 
-        {% if ingredients %}
-            <p>{{ ingredients }}</p>
+        {% if food_ingredients %}
+            <p>{{ food_ingredients }}</p>
         {% endif %}
 
 
-        {% if random_drink %}
-            <p>{{ random_drink }}</p>
+        {% if drink_name %}
+            <p>{{ drink_name }}</p>
+        {% endif %}
+
+        {% if drink_ingredients %}
+            <p>{{ drink_ingredients }}</p>
+        {% endif %}
+
+        {% if measurements %}
+            <p>{{ measurements }}</p>
         {% endif %}
 
 

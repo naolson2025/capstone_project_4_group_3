@@ -54,35 +54,23 @@ def sort_data(forecast):
     day_5_formatted = []
 
     # Display the 5 day lists with the 3 hour intervals
-    print()
-    print('{:25} {:11} {:20} {:15}'.format('Date and Time', 'Temp', 'Weather', 'Wind Speed'))
     for day in day_1:
-        print('{:25} {:1} {:5} {:20} {:15}'.format(day['dt_txt'], str(day['main']['temp']), 'F', day['weather'][0]['description'], str(day['wind']['speed'])))
-        #formatted_forecast_1 = '{:25} {:1} {:5} {:20} {:15}'.format(day['dt_txt'], str(day['main']['temp']), 'F', day['weather'][0]['description'], str(day['wind']['speed']))
         formatted_forecast_1 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
         day_1_formatted.append(formatted_forecast_1)
 
-    print()
     for day in day_2:
-        print('{:25} {:1} {:5} {:20} {:15}'.format(day['dt_txt'], str(day['main']['temp']), 'F', day['weather'][0]['description'], str(day['wind']['speed'])))
         formatted_forecast_2 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
         day_2_formatted.append(formatted_forecast_2)
 
-    print()
     for day in day_3:
-        print('{:25} {:1} {:5} {:20} {:15}'.format(day['dt_txt'], str(day['main']['temp']), 'F', day['weather'][0]['description'], str(day['wind']['speed'])))
         formatted_forecast_3 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
         day_3_formatted.append(formatted_forecast_3)
 
-    print()
     for day in day_4:
-        print('{:25} {:1} {:5} {:20} {:15}'.format(day['dt_txt'], str(day['main']['temp']), 'F', day['weather'][0]['description'], str(day['wind']['speed'])))
         formatted_forecast_4 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
         day_4_formatted.append(formatted_forecast_4)
 
-    print()
     for day in day_5:
-        print('{:25} {:1} {:5} {:20} {:15}'.format(day['dt_txt'], str(day['main']['temp']), 'F', day['weather'][0]['description'], str(day['wind']['speed'])))
         formatted_forecast_5 = '{} {}F {}'.format(day['dt_txt'], str(day['main']['temp']), day['weather'][0]['description'])
         day_5_formatted.append(formatted_forecast_5)
 
