@@ -14,3 +14,11 @@ class Weather(models.Model):
 
     def __str__(self):
         return f'{self.date}, {self.temp}, {self.weather}'
+
+
+class RecipeSearch(models.Model):
+    # save the users search in order to access it across pages
+    users_search = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f'{self.users_search}'

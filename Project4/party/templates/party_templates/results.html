@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Party Planner</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    </head>
+
+    <body>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col">
+                    <h1 id="picnic-planner">Picnic Planner</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <a id="new-search-button" class="bt btn-primary btn-sm" href="{% url 'get_party_data' %}" role="button">New Search</a>
+                </div>
+
+                <div class="col">
+                    <a id="save-button" class="bt btn-primary btn-sm" role="button">Save</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h4>Food Recipe</h4>
+                </div>
+
+                <div class="col">
+                    <h4>Drink Recipe</h4>
+                </div>
+
+                <div class="col">
+                    <h4>Weather Forecast</h4>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col">
+                    {% if food_name %}
+                        <p>{{ food_name }}</p>
+                    {% endif %}
+            
+                    {% if recipe_url %}
+                        <p><a href="{{ recipe_url }}">Instructions</a></p>
+                    {% endif %}
+            
+                    {% for food_ingredient in food_ingredients %}
+                        <li>{{ food_ingredient }}</li>
+                    {% empty %}
+                        <p>There are no ingredients in this food recipe</p>
+                    {% endfor %}
+                </div>
+
+                <div class="col">
+                    {% if drink_name %}
+                        <p>{{ drink_name }}</p>
+                    {% endif %}
+                    
+                    <div class="row">
+                        <div class="col">
+                            {% for drink_ingredient in drink_ingredients %}
+                                <li>{{ drink_ingredient }}</li>
+                            {% empty %}
+                                <p>There are no ingredients in this drink recipe</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col">
+                            {% for measurement in measurements %}
+                                <li>{{ measurement }}</li>
+                            {% empty %}
+                                <p>There are no measurements in this drink recipe</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <p id="day-header">Day</p>
+                        </div>
+
+                        <div class="col">
+                            <p id="temp-header">Average Temp</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            {% for day in five_forecast_dates %}
+                                <p>{{ day }}</p>
+                            {% empty %}
+                                <p>There are no weather forcasts</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col">
+                            {% for temp in average_temps %}
+                                <p>{{ temp }} F</p>
+                            {% empty %}
+                                <p>There are no average temperatures</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+
+</html>
+
