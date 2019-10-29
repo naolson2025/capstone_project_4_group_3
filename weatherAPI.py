@@ -37,7 +37,7 @@ def sort_data(forecast):
         if datetime.strptime(interval['dt_txt'], '%Y-%m-%d %H:%M:%S').date() == five_forecast_dates[0]:
             day_1.append(interval)
         elif datetime.strptime(interval['dt_txt'], '%Y-%m-%d %H:%M:%S').date() == five_forecast_dates[1]:
-            day_2.append(interval)
+            day_2.adda kppend(interval)
         elif datetime.strptime(interval['dt_txt'], '%Y-%m-%d %H:%M:%S').date() == five_forecast_dates[2]:
             day_3.append(interval)
         elif datetime.strptime(interval['dt_txt'], '%Y-%m-%d %H:%M:%S').date() == five_forecast_dates[3]:

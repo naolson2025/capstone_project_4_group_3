@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from .models import Weather
-from .weatherAPI import call_weather_api, sort_data
-from .drinkAPI import call_drink_api
-from .foodAPI import call_food_api
-import requests
+from weatherAPI import call_weather_api, sort_data
+from drinkAPI import call_drink_api
+from foodAPI import call_food_api
+
 
 # Create your views here.
 
